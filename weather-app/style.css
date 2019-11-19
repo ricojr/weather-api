@@ -5,7 +5,10 @@
 body{
     background-color: #293251;
 }
-
+form{
+    margin:0;
+    position: relative;
+}
 .container{
     width: 300px;    
     background-color: #FFF;

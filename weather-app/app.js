@@ -22,7 +22,7 @@ const key = "d0ccd0415c9da9dd949601c2ebdb84fb";
 
 // check if browser supports geolocation
 if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(setLocation, showError);
+    navigator.geolocation.getCurrentPosition(getWeatherData, showError);
 
 } else {
     notificationElement.style.display = "block";
@@ -30,12 +30,10 @@ if ('geolocation' in navigator) {
 }
 
 // set user's position
-function setLocation(location) {
+//function getWeatherData(position) {
     
 
-    let location = cityname
-    getWeather(cityname);
-}
+//  console.log(position);
 
 // show error when there is an issue with geolocation service
 function showError(error) {
@@ -44,11 +42,11 @@ function showError(error) {
 }
 
 // Get weather from api provider
-function getWeather(cityname
-    ) {
-    let api = `https://api.openweathermap.org/data/2.5/forecast?q=]${cityname},us&mode=xml&appid=b6907d289e10d714a6e88b30761fae22`;
-   
-    // console.log(api);
+function getWeatherData(cityname)
+    {
+    //let api = `https://api.openweathermap.org/data/2.5/forecast?q=${cityname},us&mode=xml&appid=${key}`;
+   let api = `https://api.openweathermap.org/data/2.5/forecast?q=${cityname}&appid=${key}`;
+    console.log(api);
     fetch(api)
         .then(function(response) {
             let data = response.json();
@@ -67,7 +65,8 @@ function getWeather(cityname
         });
 
 }
-
+let button = document.querySelector("#run");
+//button.addEventListener("click", getWeather);
 // Dislay weather to UI
 function displayWeather() {
     iconElement.innerHTML = `<img src="icons/${weather.iconId}.png"/>`;
