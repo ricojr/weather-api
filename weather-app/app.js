@@ -1,9 +1,6 @@
-// Tutorial by http://youtube.com/CodeExplained
-// api key : 1af592121792700ce268238f2b5b961b
 
 
-// select elements
-
+//select elements
 const iconElement = document.querySelector(".weather-icon");
 const tempElement = document.querySelector(".temperature-value p");
 const descElement = document.querySelector(".temperature-description p");
@@ -25,7 +22,7 @@ const key = "d0ccd0415c9da9dd949601c2ebdb84fb";
 
 // check if browser supports geolocation
 if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(setPosition, showError);
+    navigator.geolocation.getCurrentPosition(setLocation, showError);
 
 } else {
     notificationElement.style.display = "block";
@@ -33,11 +30,11 @@ if ('geolocation' in navigator) {
 }
 
 // set user's position
-function setPosition(position) {
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
+function setLocation(location) {
+    
 
-    getWeather(latitude, longitude);
+    let location = cityname
+    getWeather(cityname);
 }
 
 // show error when there is an issue with geolocation service
@@ -47,8 +44,10 @@ function showError(error) {
 }
 
 // Get weather from api provider
-function getWeather(latitude, longitude) {
-    let api = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=d0ccd0415c9da9dd949601c2ebdb84fb`;
+function getWeather(cityname
+    ) {
+    let api = `https://api.openweathermap.org/data/2.5/forecast?q=]${cityname},us&mode=xml&appid=b6907d289e10d714a6e88b30761fae22`;
+   
     // console.log(api);
     fetch(api)
         .then(function(response) {
